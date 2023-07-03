@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("안녕 세상아 안녕 컴퓨터야"),
-        ),
+        appBar: AppBar(),
       ),
     );
   }
