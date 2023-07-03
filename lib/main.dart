@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("hello world"),
+          title: Text("안녕 세상아"),
         ),
       ),
     );
