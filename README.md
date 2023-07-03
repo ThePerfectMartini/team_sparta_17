@@ -1,6 +1,6 @@
 # team_sparta_17
 
-A new Flutter project.
+팀 스파르타 내일배움캠프 iOS 과정 사전캠프 사전과제 17조
 
 ## Getting Started
 
