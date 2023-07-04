@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:team_sparta_17/daily_schduled_view.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(DailyScheduledView());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
               "공성표 홍성철 전상혁",
               style: TextStyle(fontSize: 40),
             ),
-          )),
+        ),
+      ),
     );
   }
 }
