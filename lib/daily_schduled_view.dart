@@ -12,8 +12,8 @@ class DailyScheduledView extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<DailyScheduledView> {
-  Schedule dummySchedule = Schedule("2023년 7월 4일", "수학공부",
-      "수학공부합니다 수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다");
+  Schedule dummySchedule = Schedule("2023년 7월 4일", "수학공부공부공부공부공부공부",
+      "수학공부합니다 수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다\n수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다");
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
