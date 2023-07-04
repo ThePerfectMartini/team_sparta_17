@@ -23,15 +23,20 @@ class _MyWidgetState extends State<DailyScheduledView> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
           ),
           title: Text(
             dummySchedule.date,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 28,
+              color: Colors.black,
             ),
           ),
+          backgroundColor: Color.fromRGBO(207, 255, 229, 1.0),
         ),
       ),
     );
