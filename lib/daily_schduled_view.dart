@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:team_sparta_17/Schedule.dart';
 
 class DailyScheduledView extends StatefulWidget {
   const DailyScheduledView({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class DailyScheduledView extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<DailyScheduledView> {
+  Schedule dummySchedule = Schedule("2023년 7월 4일", "수학공부",
+      "수학공부합니다 수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다");
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +26,7 @@ class _MyWidgetState extends State<DailyScheduledView> {
             icon: Icon(Icons.arrow_back_ios),
           ),
           title: Text(
-            "2023년 07월 04일",
+            dummySchedule.date,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 28,
