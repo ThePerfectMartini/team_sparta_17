@@ -62,16 +62,19 @@ class Edit extends StatelessWidget {
             SizedBox(
               height: 18.0,
             ),
-            TextField(
-              style: TextStyle(fontSize: 18.0),
-              decoration: InputDecoration(
-                hintText: '내용을 입력해주세요',
-                alignLabelWithHint: true,
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(vertical: 250.0),
+            Container(
+              height: 550.0,
+              child: TextField(
+                style: TextStyle(fontSize: 18.0),
+                decoration: InputDecoration(
+                  hintText: '내용을 입력해주세요',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: null,
+                expands: true,
+                keyboardType: TextInputType.multiline,
+                textAlignVertical: TextAlignVertical.top,
               ),
-              maxLines: null,
-              textAlignVertical: TextAlignVertical.bottom,
             ),
           ],
         ),
