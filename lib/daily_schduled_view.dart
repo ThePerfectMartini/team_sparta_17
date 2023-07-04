@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:team_sparta_17/Schedule.dart';
+import 'package:team_sparta_17/schedule_cell.dart';
 
 class DailyScheduledView extends StatefulWidget {
   const DailyScheduledView({Key? key}) : super(key: key);
@@ -36,7 +37,22 @@ class _MyWidgetState extends State<DailyScheduledView> {
               color: Colors.black,
             ),
           ),
-          backgroundColor: Color.fromRGBO(207, 255, 229, 1.0),
+          backgroundColor: Color.fromRGBO(
+            207,
+            255,
+            229,
+            1.0,
+          ),
+        ),
+        body: Center(
+          child: Expanded(
+            child: ListView.builder(
+              itemCount: 7,
+              itemBuilder: (BuildContext, index) {
+                return ScheduleCell(schedule: dummySchedule);
+              },
+            ),
+          ),
         ),
       ),
     );
