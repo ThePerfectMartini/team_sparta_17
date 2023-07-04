@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'HomePage_cell.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,6 +9,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final dummies = [
+    {
+      "date": '23년07월04일',
+      "todos": ['g', 'gd'],
+      "context": '내용',
+    },
+    {
+      "date": '23년07월11일',
+      "todos": [],
+      "context": '내용',
+    },
+  ];
+  //더미데이터
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,11 +36,12 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Color(0xffCFFFE5),
         ),
-        body: Center(
-          child: Text(
-            "공성표 홍성철 전상혁",
-            style: TextStyle(fontSize: 40),
-          ),
+        body: ListView.builder(
+          itemCount: dummies.length,
+          itemBuilder: (context, index) {
+            return Cell(date: dummies[index]['date'].toString(), count: index);
+          },
+          //데이터 받아오는곳
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
