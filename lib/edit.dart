@@ -30,6 +30,52 @@ class Edit extends StatelessWidget {
           ),
         ],
       ),
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '제목',
+              style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 18.0,
+            ),
+            TextField(
+              style: TextStyle(fontSize: 18.0),
+              decoration: InputDecoration(
+                hintText: '제목을 입력해주세요',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(
+              height: 40.0,
+            ),
+            Text(
+              '내용',
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 18.0,
+            ),
+            TextField(
+              style: TextStyle(fontSize: 18.0),
+              decoration: InputDecoration(
+                hintText: '내용을 입력해주세요',
+                alignLabelWithHint: true,
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.symmetric(vertical: 250.0),
+              ),
+              maxLines: null,
+              textAlignVertical: TextAlignVertical.bottom,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
