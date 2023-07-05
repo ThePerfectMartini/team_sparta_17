@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_sparta_17/Resource/AppColors.dart';
 
 class RoundCrossButton extends StatelessWidget {
   final double size;
@@ -15,12 +16,12 @@ class RoundCrossButton extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Color.fromRGBO(198, 219, 218, 1.0),
+          color: AppColors.primaryColor,
         ),
         child: Center(
           child: Icon(
             Icons.add,
-            color: Colors.black,
+            color: AppColors.blackColor,
             size: size * 0.6,
           ),
         ),
