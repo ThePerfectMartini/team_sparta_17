@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'schedule_service.dart';
+
 class Cell extends StatefulWidget {
   const Cell({
     Key? key,
     required this.date,
     required this.count,
+    required this.index,
   }) : super(key: key);
 
   final String date;
   final int count;
-
+  final int index;
   @override
   State<Cell> createState() => _CellState();
 }
@@ -30,8 +33,13 @@ class _CellState extends State<Cell> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Icon(Icons.delete_forever),
+                    padding: const EdgeInsets.all(5),
+                    child: IconButton(
+                      onPressed: () {
+                        ScheduleService().deleteSchedule(index: widget.index);
+                      },
+                      icon: Icon(Icons.delete_forever),
+                    ),
                   ),
                   Text(
                     widget.date,
@@ -52,6 +60,7 @@ class _CellState extends State<Cell> {
       );
     } else {
       return Padding(
+        //일반 셀
         padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
         child: Container(
           height: 55,
@@ -73,7 +82,7 @@ class _CellState extends State<Cell> {
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: Text(
-                  "할일목록 2개",
+                  "할일목록 ${widget.count}개",
                   style: TextStyle(fontSize: 20),
                 ),
               ),
