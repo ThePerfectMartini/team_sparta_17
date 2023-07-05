@@ -11,7 +11,19 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => ScheduleService()),
       ],
-      child: const HomePage(),
+      child: const MyApp(),
     ),
   );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '17조',
+      home: const HomePage(),
+    );
+  }
 }
