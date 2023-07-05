@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:team_sparta_17/Schedule.dart';
+import 'package:team_sparta_17/round_plus_button.dart';
 import 'package:team_sparta_17/schedule_cell.dart';
 
 class DailyScheduledView extends StatefulWidget {
@@ -45,13 +46,25 @@ class _MyWidgetState extends State<DailyScheduledView> {
           ),
         ),
         body: Center(
-          child: Expanded(
-            child: ListView.builder(
-              itemCount: 7,
-              itemBuilder: (BuildContext, index) {
-                return ScheduleCell(schedule: dummySchedule);
-              },
-            ),
+          child: Stack(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 7,
+                  itemBuilder: (BuildContext, index) {
+                    return ScheduleCell(schedule: dummySchedule);
+                  },
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                right: 20,
+                child: RoundCrossButton(
+                  size: 67,
+                  onPressed: () {},
+                ),
+              ),
+            ],
           ),
         ),
       ),
