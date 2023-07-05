@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_sparta_17/edit.dart';
 import 'HomePage_cell.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,10 +44,18 @@ class _HomePageState extends State<HomePage> {
           },
           //데이터 받아오는곳
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add, color: Colors.black),
-          backgroundColor: Color(0xffCFFFE5),
+        floatingActionButton: Builder(
+          builder: (context) => FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Edit()));
+            },
+            child: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+            backgroundColor: Color(0xffCFFFE5),
+          ),
         ),
       ),
     );
