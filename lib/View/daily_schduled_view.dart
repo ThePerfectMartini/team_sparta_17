@@ -5,32 +5,33 @@ import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
 import 'package:team_sparta_17/Resource/AppColors.dart';
 import 'package:team_sparta_17/Resource/AppFonts.dart';
+import 'package:team_sparta_17/Service/ScheduleService.dart';
 import 'package:team_sparta_17/View/round_plus_button.dart';
 import 'package:team_sparta_17/View/schedule_cell.dart';
-import '../Service/ScheduleService.dart';
+import '../edit.dart';
 
 class DailyScheduledView extends StatefulWidget {
-  final String date;
-  const DailyScheduledView({Key? key, required this.date}) : super(key: key);
+  // final String date;
+  final List<Schedule> selectedSchedules;
+  const DailyScheduledView({Key? key, required this.selectedSchedules})
+      : super(key: key);
 
   @override
   State<DailyScheduledView> createState() => _MyWidgetState();
 }
 
 class _MyWidgetState extends State<DailyScheduledView> {
-  Schedule dummySchedule = Schedule("2023년 7월 4일", "수학공부공부공부공부공부공부",
-      "수학공부합니다 수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다\n수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다수학공부합니다");
   @override
   Widget build(BuildContext context) {
-    final scheduleService = Provider.of<ScheduleService>(context);
-    List<Schedule> schedules = scheduleService.getSchedulesByDate(widget.date);
-
+    final ScheduleService scheduleService =
+        Provider.of<ScheduleService>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
+              scheduleService.selectDate("");
               Navigator.pop(context);
             },
             icon: Icon(
@@ -39,7 +40,7 @@ class _MyWidgetState extends State<DailyScheduledView> {
             ),
           ),
           title: Text(
-            dummySchedule.date,
+            scheduleService.selectedDate,
             style: AppFonts.title,
           ),
           backgroundColor: AppColors.primaryColor,
@@ -47,13 +48,18 @@ class _MyWidgetState extends State<DailyScheduledView> {
         body: Center(
           child: Stack(
             children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: schedules.length,
-                  itemBuilder: (BuildContext, index) {
-                    return ScheduleCell(schedule: schedules[index]);
-                  },
-                ),
+              Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: widget.selectedSchedules.length,
+                      itemBuilder: (context, index) {
+                        return ScheduleCell(
+                            schedule: widget.selectedSchedules[index]);
+                      },
+                    ),
+                  ),
+                ],
               ),
               Positioned(
                 bottom: 20,
@@ -61,7 +67,10 @@ class _MyWidgetState extends State<DailyScheduledView> {
                 child: RoundCrossButton(
                   size: 67,
                   onPressed: () {
-                    // 추가
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Edit()),
+                    );
                   },
                 ),
               ),

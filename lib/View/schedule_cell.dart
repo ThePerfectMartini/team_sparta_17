@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Resource/AppFonts.dart';
+import 'package:team_sparta_17/Service/ScheduleService.dart';
 import '../Model/Schedule.dart';
 
 class ScheduleCell extends StatelessWidget {
@@ -11,6 +13,7 @@ class ScheduleCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheduleService = Provider.of<ScheduleService>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 15.0,
@@ -42,6 +45,7 @@ class ScheduleCell extends StatelessWidget {
                   IconButton(
                     onPressed: () {
                       // 삭제
+                      scheduleService.deleteSchedule(schedule);
                     },
                     icon: Icon(Icons.delete),
                   ),

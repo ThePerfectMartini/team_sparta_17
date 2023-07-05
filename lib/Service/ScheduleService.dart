@@ -5,8 +5,10 @@ import '../Model/SortingDirection.dart';
 
 class ScheduleService with ChangeNotifier {
   Map<String, List<Schedule>> _schedules = {};
+  String _selectedDate = "";
 
   Map<String, List<Schedule>> get schedules => _schedules;
+  String get selectedDate => _selectedDate;
 
   void addSchedule(Schedule schedule) {
     final date = schedule.date;
@@ -34,6 +36,11 @@ class ScheduleService with ChangeNotifier {
     if (_schedules.containsKey(date)) {
       List<Schedule> scheduleList = _schedules[date]!;
       if (scheduleList.remove(schedule)) {
+        if (scheduleList.isEmpty) {
+          _schedules.remove(date);
+        } else {
+          _schedules[date] = scheduleList;
+        }
         notifyListeners();
       }
     }
@@ -64,5 +71,10 @@ class ScheduleService with ChangeNotifier {
       sortedSchedules.add(scheduleList);
     }
     return sortedSchedules;
+  }
+
+  void selectDate(String date) {
+    _selectedDate = date;
+    notifyListeners();
   }
 }

@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final scheduleService = Provider.of<ScheduleService>(context);
-    print(scheduleService.schedules);
     List<List<Schedule>> allSchedules = scheduleService.getAllSchedulesSortBy();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -49,11 +48,13 @@ class _HomePageState extends State<HomePage> {
             return Builder(builder: (context) {
               return InkWell(
                 onTap: () {
+                  scheduleService.selectDate(allSchedules[index][0].date);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          DailyScheduledView(date: allSchedules[index][0].date),
+                      builder: (context) => DailyScheduledView(
+                        selectedSchedules: allSchedules[index],
+                      ),
                     ),
                   );
                 },
