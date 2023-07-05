@@ -28,7 +28,6 @@ class _EditState extends State<Edit> {
               alignment: Alignment.centerRight,
               child: InkWell(
                 onTap: () {
-                  // 작성한 내용을 날짜화면에 저장하는 작업 및 제목과 내용을 가져와서 처리하는 코드 작성
                   final String title = titleController.text;
                   final String content = contentController.text;
                   final String date = dateController.text;
@@ -36,9 +35,8 @@ class _EditState extends State<Edit> {
                   dataService.addNewData(
                       Data(title: title, content: content, date: date));
 
-                  print('날짜: $date');
-                  print('제목: $title');
-                  print('내용: $content');
+                  Navigator.pop(context,
+                      {'제목': title, '내용': content, '날짜': date}); // 이전 화면으로 돌아가기
                 },
                 child: Text(
                   '작성',
