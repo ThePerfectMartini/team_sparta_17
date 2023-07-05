@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Schedule.dart';
+import 'package:team_sparta_17/Resource/AppFonts.dart';
+import '../Model/Schedule.dart';
 
 class ScheduleCell extends StatelessWidget {
   final Schedule schedule;
@@ -26,10 +27,7 @@ class ScheduleCell extends StatelessWidget {
                   Expanded(
                     child: Text(
                       "${schedule.title}",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
-                      ),
+                      style: AppFonts.title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -51,10 +49,7 @@ class ScheduleCell extends StatelessWidget {
               ),
               Text(
                 "${schedule.context}",
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 18,
-                ),
+                style: AppFonts.body,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),

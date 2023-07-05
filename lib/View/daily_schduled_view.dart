@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:team_sparta_17/Schedule.dart';
-import 'package:team_sparta_17/round_plus_button.dart';
-import 'package:team_sparta_17/schedule_cell.dart';
+import 'package:team_sparta_17/Model/Schedule.dart';
+import 'package:team_sparta_17/Resource/AppColors.dart';
+import 'package:team_sparta_17/Resource/AppFonts.dart';
+import 'package:team_sparta_17/View/round_plus_button.dart';
+import 'package:team_sparta_17/View/schedule_cell.dart';
 
 class DailyScheduledView extends StatefulWidget {
   const DailyScheduledView({Key? key}) : super(key: key);
@@ -27,23 +29,14 @@ class _MyWidgetState extends State<DailyScheduledView> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: Colors.black,
+              color: AppColors.blackColor,
             ),
           ),
           title: Text(
             dummySchedule.date,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 28,
-              color: Colors.black,
-            ),
+            style: AppFonts.title,
           ),
-          backgroundColor: Color.fromRGBO(
-            207,
-            255,
-            229,
-            1.0,
-          ),
+          backgroundColor: AppColors.primaryColor,
         ),
         body: Center(
           child: Stack(
@@ -61,7 +54,9 @@ class _MyWidgetState extends State<DailyScheduledView> {
                 right: 20,
                 child: RoundCrossButton(
                   size: 67,
-                  onPressed: () {},
+                  onPressed: () {
+                    // 추가
+                  },
                 ),
               ),
             ],
