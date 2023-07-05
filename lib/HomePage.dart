@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
 import 'package:team_sparta_17/Service/ScheduleService.dart';
+import 'package:team_sparta_17/View/daily_schduled_view.dart';
 import 'package:team_sparta_17/edit.dart';
 import 'HomePage_cell.dart';
 
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final scheduleService = Provider.of<ScheduleService>(context);
     print(scheduleService.schedules);
+    List<List<Schedule>> allSchedules = scheduleService.getAllSchedulesSortBy();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -42,10 +44,24 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color(0xffCFFFE5),
         ),
         body: ListView.builder(
-          itemCount: scheduleService.getAllSchedulesSortBy().length,
+          itemCount: allSchedules.length,
           itemBuilder: (context, index) {
-            return Cell(
-                schedules: scheduleService.getAllSchedulesSortBy()[index]);
+            return Builder(builder: (context) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          DailyScheduledView(date: allSchedules[index][0].date),
+                    ),
+                  );
+                },
+                child: Cell(
+                  schedules: allSchedules[index],
+                ),
+              );
+            });
           },
           //데이터 받아오는곳
         ),
