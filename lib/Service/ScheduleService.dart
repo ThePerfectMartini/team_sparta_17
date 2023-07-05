@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider/flutter_provider.dart';
+import 'package:provider/provider.dart';
 import '../Model/Schedule.dart';
+import '../Model/SortingDirection.dart';
 
 class ScheduleService with ChangeNotifier {
   Map<String, List<Schedule>> _schedules = {};
@@ -44,5 +45,24 @@ class ScheduleService with ChangeNotifier {
     } else {
       return [];
     }
+  }
+
+  List<List<Schedule>> getAllSchedulesSortBy(
+      {SortingDirection direction = SortingDirection.Descending}) {
+    List<List<Schedule>> sortedSchedules = [];
+    final sortedDates;
+    switch (direction) {
+      case SortingDirection.Ascending:
+        sortedDates = _schedules.keys.toList()..sort();
+        break;
+      case SortingDirection.Descending:
+        sortedDates = _schedules.keys.toList()..sort((a, b) => b.compareTo(a));
+        break;
+    }
+    for (String date in sortedDates) {
+      List<Schedule> scheduleList = _schedules[date]!;
+      sortedSchedules.add(scheduleList);
+    }
+    return sortedSchedules;
   }
 }

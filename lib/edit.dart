@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:team_sparta_17/Model/Schedule.dart';
+import 'Service/ScheduleService.dart';
 
 class Edit extends StatelessWidget {
   const Edit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final scheduleService = Provider.of<ScheduleService>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 207, 255, 229),
@@ -17,6 +22,9 @@ class Edit extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // 작성한 내용을 날짜화면에 저장하는 작업 및 제목과 내용을 가져와서 처리하는 코드 작성
+                  scheduleService.addSchedule(
+                      Schedule("2023년 07월 04일", "오늘할일", "내용을 입력합니다."));
+                  Navigator.pop(context);
                 },
                 child: Text(
                   '작성',
