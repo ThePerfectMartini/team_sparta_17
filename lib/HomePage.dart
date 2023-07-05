@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:team_sparta_17/schedule_service.dart';
@@ -12,7 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String name = '스터디플래너';
+  String inputDateY = "";
+  String inputDateM = "";
+  String inputDateD = "";
   @override
   Widget build(BuildContext context) {
     print("빌드전");
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            name,
+            '스터디플래너',
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 28, color: Colors.black),
           ),
@@ -33,8 +36,7 @@ class _HomePageState extends State<HomePage> {
           itemCount: scheduleList.length,
           itemBuilder: (context, index) {
             return Cell(
-              date: scheduleList[index].date,
-              count: scheduleList[index].schedule_datail.length,
+              schedule: scheduleList[index],
               index: index,
             );
           },
@@ -42,7 +44,69 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            scheduleService.createSchedule(date: "새로추가");
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text("추가"),
+                    content: Container(
+                      height: 250,
+                      child: Column(
+                        children: [
+                          TextField(
+                            maxLength: 2,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: InputDecoration(labelText: '년도'),
+                            onChanged: (text) {
+                              inputDateY = text;
+                            },
+                          ),
+                          TextField(
+                            maxLength: 2,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: InputDecoration(labelText: '월'),
+                            onChanged: (text) {
+                              inputDateM = text;
+                            },
+                          ),
+                          TextField(
+                            maxLength: 2,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: InputDecoration(labelText: '일'),
+                            onChanged: (text) {
+                              inputDateD = text;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("취소"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          scheduleService.createSchedule(
+                              date: '$inputDateY년$inputDateM월$inputDateD일');
+                          inputDateY = '';
+                          inputDateM = '';
+                          inputDateD = '';
+                        },
+                        child: Text("확인"),
+                      ),
+                    ],
+                  );
+                });
           },
           child: Icon(Icons.add, color: Colors.black),
           backgroundColor: Color(0xffCFFFE5),

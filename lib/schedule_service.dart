@@ -28,6 +28,13 @@ class ScheduleService extends ChangeNotifier {
     Schedule(date: '23년07월06일', schedule_datail: [
       ScheduleDetail(title: '할일', context: '내용'),
     ]),
+    Schedule(
+      date: '23년07월07일',
+      schedule_datail: [
+        ScheduleDetail(title: '할일', context: '내용'),
+        ScheduleDetail(title: '수학공부', context: '미적분'),
+      ],
+    ),
     Schedule(date: '23년07월07일', schedule_datail: [
       ScheduleDetail(title: '할일', context: '내용'),
       ScheduleDetail(title: '수학공부', context: '미적분'),
@@ -35,8 +42,16 @@ class ScheduleService extends ChangeNotifier {
     Schedule(date: '23년07월07일', schedule_datail: [
       ScheduleDetail(title: '할일', context: '내용'),
       ScheduleDetail(title: '수학공부', context: '미적분'),
-    ]),
-    Schedule(date: '23년07월07일', schedule_datail: [
+      ScheduleDetail(title: '할일', context: '내용'),
+      ScheduleDetail(title: '수학공부', context: '미적분'),
+      ScheduleDetail(title: '할일', context: '내용'),
+      ScheduleDetail(title: '수학공부', context: '미적분'),
+      ScheduleDetail(title: '할일', context: '내용'),
+      ScheduleDetail(title: '수학공부', context: '미적분'),
+      ScheduleDetail(title: '할일', context: '내용'),
+      ScheduleDetail(title: '수학공부', context: '미적분'),
+      ScheduleDetail(title: '할일', context: '내용'),
+      ScheduleDetail(title: '수학공부', context: '미적분'),
       ScheduleDetail(title: '할일', context: '내용'),
       ScheduleDetail(title: '수학공부', context: '미적분'),
     ]),
