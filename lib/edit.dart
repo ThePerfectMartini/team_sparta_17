@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:team_sparta_17/data.dart';
+import 'package:team_sparta_17/data_service.dart';
 
-class Edit extends StatelessWidget {
+class Edit extends StatefulWidget {
   Edit({Key? key}) : super(key: key);
 
+  @override
+  _EditState createState() => _EditState();
+}
+
+class _EditState extends State<Edit> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
+
+  final DataService dataService = DataService();
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +29,16 @@ class Edit extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // 작성한 내용을 날짜화면에 저장하는 작업 및 제목과 내용을 가져와서 처리하는 코드 작성
-                  Data.title = titleController.text;
-                  Data.content = contentController.text;
-                  Data.date = dateController.text;
+                  final String title = titleController.text;
+                  final String content = contentController.text;
+                  final String date = dateController.text;
 
-                  print('날짜: ${Data.date}');
-                  print('제목: ${Data.title}');
-                  print('내용: ${Data.content}');
+                  dataService.addNewData(
+                      Data(title: title, content: content, date: date));
+
+                  print('날짜: $date');
+                  print('제목: $title');
+                  print('내용: $content');
                 },
                 child: Text(
                   '작성',
@@ -88,6 +98,7 @@ class Edit extends StatelessWidget {
                 hintText: '제목을 입력해주세요',
                 border: OutlineInputBorder(),
               ),
+              onChanged: (value) {},
             ),
             SizedBox(
               height: 40.0,
