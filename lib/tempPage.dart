@@ -12,6 +12,9 @@ class tempPage extends StatefulWidget {
   @override
   State<tempPage> createState() => _tempPageState();
 }
+//데이터 보내시고 받으실때 Schedule타입으로 보내고 받으시면 됩니다.
+//schedule 타입 안에 date 날짜 String으로 있고 ScheduleDetail 자료형에 [제목,내용]들이
+//리스트로 들어 있습니다.
 
 class _tempPageState extends State<tempPage> {
   @override
