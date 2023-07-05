@@ -73,7 +73,7 @@ class _MyWidgetState extends State<DailyScheduledView> {
                   itemCount: dataList.length,
                   itemBuilder: (context, index) {
                     return ScheduleCell(
-                      schedule: schedule, dataService: dataService,
+                      dataService: dataService,
                     ),
                   },
                 ),
