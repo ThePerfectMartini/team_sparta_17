@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:team_sparta_17/data.dart';
 
 class Edit extends StatelessWidget {
-  const Edit({Key? key}) : super(key: key);
+  Edit({Key? key}) : super(key: key);
+
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,13 @@ class Edit extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // 작성한 내용을 날짜화면에 저장하는 작업 및 제목과 내용을 가져와서 처리하는 코드 작성
+                  Data.title = titleController.text;
+                  Data.content = contentController.text;
+                  Data.date = dateController.text;
+
+                  print('날짜: ${Data.date}');
+                  print('제목: ${Data.title}');
+                  print('내용: ${Data.content}');
                 },
                 child: Text(
                   '작성',
@@ -35,6 +47,30 @@ class Edit extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              '날짜',
+              style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 18.0,
+            ),
+            TextField(
+              controller: dateController,
+              style: TextStyle(fontSize: 18.0),
+              decoration: InputDecoration(
+                hintText: 'xxxx년 xx월 xx일',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(
+              height: 40.0,
+            ),
             Text(
               '제목',
               style: TextStyle(
@@ -46,6 +82,7 @@ class Edit extends StatelessWidget {
               height: 18.0,
             ),
             TextField(
+              controller: titleController,
               style: TextStyle(fontSize: 18.0),
               decoration: InputDecoration(
                 hintText: '제목을 입력해주세요',
@@ -63,8 +100,9 @@ class Edit extends StatelessWidget {
               height: 18.0,
             ),
             Container(
-              height: 550.0,
+              height: 350.0,
               child: TextField(
+                controller: contentController,
                 style: TextStyle(fontSize: 18.0),
                 decoration: InputDecoration(
                   hintText: '내용을 입력해주세요',
