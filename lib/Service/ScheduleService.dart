@@ -18,14 +18,34 @@ class ScheduleService with ChangeNotifier {
     notifyListeners();
   }
 
+  // void updateSchedule(Schedule beforeSchedule, Schedule updatedSchedule) {
+  //   final date = updatedSchedule.date;
+  //   if (_schedules.containsKey(date)) {
+  //     List<Schedule> scheduleList = _schedules[date]!;
+  //     int scheduleIndex = scheduleList.indexOf(beforeSchedule);
+  //     if (scheduleIndex != -1) {
+  //       scheduleList[scheduleIndex] = updatedSchedule;
+  //       notifyListeners();
+  //     }
+  //   }
+  // }
+
   void updateSchedule(Schedule beforeSchedule, Schedule updatedSchedule) {
-    final date = updatedSchedule.date;
-    if (_schedules.containsKey(date)) {
-      List<Schedule> scheduleList = _schedules[date]!;
-      int scheduleIndex = scheduleList.indexOf(beforeSchedule);
-      if (scheduleIndex != -1) {
-        scheduleList[scheduleIndex] = updatedSchedule;
-        notifyListeners();
+    if (beforeSchedule.date != updatedSchedule.date) {
+      deleteSchedule(beforeSchedule);
+      addSchedule(updatedSchedule);
+      notifyListeners();
+    } else {
+      final date = updatedSchedule.date;
+      if (_schedules.containsKey(date)) {
+        List<Schedule> scheduleList = _schedules[date]!;
+        int scheduleIndex = scheduleList.indexOf(beforeSchedule);
+        if (scheduleIndex != -1) {
+          Schedule schedule = scheduleList[scheduleIndex];
+          schedule.title = updatedSchedule.title;
+          schedule.context = updatedSchedule.context;
+          notifyListeners();
+        }
       }
     }
   }

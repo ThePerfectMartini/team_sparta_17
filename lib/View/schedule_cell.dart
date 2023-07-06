@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Resource/AppFonts.dart';
 import 'package:team_sparta_17/Service/ScheduleService.dart';
+import 'package:team_sparta_17/editPage.dart';
 import '../Model/Schedule.dart';
 
 class ScheduleCell extends StatelessWidget {
@@ -14,6 +15,18 @@ class ScheduleCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleService = Provider.of<ScheduleService>(context);
+
+    void navigateToEditPage() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditPage(
+            inputSchedule: schedule,
+          ),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 15.0,
@@ -37,9 +50,7 @@ class ScheduleCell extends StatelessWidget {
                     flex: 1,
                   ),
                   IconButton(
-                    onPressed: () {
-                      // 수정
-                    },
+                    onPressed: navigateToEditPage,
                     icon: Icon(Icons.edit),
                   ),
                   IconButton(

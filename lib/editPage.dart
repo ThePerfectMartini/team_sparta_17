@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
+import 'package:team_sparta_17/Resource/AppFonts.dart';
+import 'Model/Schedule.dart';
 import 'Service/ScheduleService.dart';
 
 class EditPage extends StatelessWidget {
-  const EditPage({Key? key}) : super(key: key);
+  final Schedule? inputSchedule;
+
+  EditPage({Key? key, this.inputSchedule}) : super(key: key);
+
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+
+  bool isEditMode() {
+    return inputSchedule == null ? false : true;
+  }
 
   @override
   Widget build(BuildContext context) {
     final scheduleService = Provider.of<ScheduleService>(context);
+
+    dateController.text = inputSchedule?.date ?? '';
+    titleController.text = inputSchedule?.title ?? '';
+    contentController.text = inputSchedule?.context ?? '';
 
     return Scaffold(
       appBar: AppBar(
@@ -22,16 +38,21 @@ class EditPage extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // 작성한 내용을 날짜화면에 저장하는 작업 및 제목과 내용을 가져와서 처리하는 코드 작성
-                  scheduleService.addSchedule(
-                      Schedule("2023년 07월 04일", "오늘할일", "내용을 입력합니다."));
+                  String date = dateController.text;
+                  String title = titleController.text;
+                  String content = contentController.text;
+                  Schedule currentSchedule = Schedule(date, title, content);
+                  if (isEditMode()) {
+                    scheduleService.updateSchedule(
+                        inputSchedule!, currentSchedule);
+                  } else {
+                    scheduleService.addSchedule(currentSchedule);
+                  }
                   Navigator.pop(context);
                 },
                 child: Text(
-                  '작성',
-                  style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                  isEditMode() ? '편집' : '작성',
+                  style: isEditMode() ? AppFonts.alert : AppFonts.title,
                 ),
               ),
             ),
@@ -58,6 +79,7 @@ class EditPage extends StatelessWidget {
                 height: 18.0,
               ),
               TextField(
+                controller: dateController,
                 style: TextStyle(fontSize: 18.0),
                 decoration: InputDecoration(
                   hintText: 'xxxx년 xx월 xx일',
@@ -78,6 +100,7 @@ class EditPage extends StatelessWidget {
                 height: 18.0,
               ),
               TextField(
+                controller: titleController,
                 style: TextStyle(fontSize: 18.0),
                 decoration: InputDecoration(
                   hintText: '제목을 입력해주세요',
@@ -97,6 +120,7 @@ class EditPage extends StatelessWidget {
               Container(
                 height: 380.0,
                 child: TextField(
+                  controller: contentController,
                   style: TextStyle(fontSize: 18.0),
                   decoration: InputDecoration(
                     hintText: '내용을 입력해주세요',
