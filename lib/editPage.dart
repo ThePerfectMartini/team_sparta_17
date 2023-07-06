@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
+import 'Model/Schedule.dart';
 import 'Service/ScheduleService.dart';
 
 class EditPage extends StatelessWidget {
-  final String initialDate;
-  final String initialTitle;
-  final String initialContent;
+  final Schedule? inputSchedule;
 
-  EditPage(
-      {Key? key,
-      required this.initialContent,
-      required this.initialTitle,
-      required this.initialDate})
-      : super(key: key);
+  EditPage({Key? key, this.inputSchedule}) : super(key: key);
 
   final TextEditingController dateController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
@@ -23,9 +17,9 @@ class EditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheduleService = Provider.of<ScheduleService>(context);
 
-    dateController.text = initialDate;
-    titleController.text = initialTitle;
-    contentController.text = initialContent;
+    dateController.text = inputSchedule?.date ?? '';
+    titleController.text = inputSchedule?.title ?? '';
+    contentController.text = inputSchedule?.context ?? '';
 
     return Scaffold(
       appBar: AppBar(
@@ -42,8 +36,13 @@ class EditPage extends StatelessWidget {
                   String date = dateController.text;
                   String title = titleController.text;
                   String content = contentController.text;
-
-                  scheduleService.addSchedule(Schedule(date, title, content));
+                  Schedule currentSchedule = Schedule(date, title, content);
+                  if (inputSchedule != null) {
+                    scheduleService.updateSchedule(
+                        inputSchedule!, currentSchedule);
+                  } else {
+                    scheduleService.addSchedule(currentSchedule);
+                  }
                   Navigator.pop(context);
                 },
                 child: Text(

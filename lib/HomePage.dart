@@ -70,13 +70,7 @@ class _HomePageState extends State<HomePage> {
           builder: (context) => FloatingActionButton(
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EditPage(
-                            initialContent: '',
-                            initialTitle: '',
-                            initialDate: '',
-                          )));
+                  context, MaterialPageRoute(builder: (context) => EditPage()));
             },
             child: Icon(
               Icons.add,

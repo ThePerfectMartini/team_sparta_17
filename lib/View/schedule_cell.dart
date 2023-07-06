@@ -21,9 +21,7 @@ class ScheduleCell extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => EditPage(
-            initialDate: schedule.date,
-            initialTitle: schedule.title,
-            initialContent: schedule.context,
+            inputSchedule: schedule,
           ),
         ),
       );
