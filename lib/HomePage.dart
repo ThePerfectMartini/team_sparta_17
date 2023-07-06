@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
 import 'package:team_sparta_17/Service/ScheduleService.dart';
 import 'package:team_sparta_17/View/daily_schduled_view.dart';
-import 'package:team_sparta_17/edit.dart';
+import 'package:team_sparta_17/editPage.dart';
 import 'HomePage_cell.dart';
 
 class HomePage extends StatefulWidget {
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
           builder: (context) => FloatingActionButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Edit()));
+                  context, MaterialPageRoute(builder: (context) => EditPage()));
             },
             child: Icon(
               Icons.add,
