@@ -37,6 +37,7 @@ class ScheduleService with ChangeNotifier {
       int scheduleIndex = scheduleList.indexOf(beforeSchedule);
       if (scheduleIndex != -1) {
         Schedule schedule = scheduleList[scheduleIndex];
+        schedule.date = updatedSchedule.date;
         schedule.title = updatedSchedule.title;
         schedule.context = updatedSchedule.context;
         notifyListeners();
