@@ -4,7 +4,16 @@ import 'package:team_sparta_17/Model/Schedule.dart';
 import 'Service/ScheduleService.dart';
 
 class EditPage extends StatelessWidget {
-  EditPage({Key? key}) : super(key: key);
+  final String initialDate;
+  final String initialTitle;
+  final String initialContent;
+
+  EditPage(
+      {Key? key,
+      required this.initialContent,
+      required this.initialTitle,
+      required this.initialDate})
+      : super(key: key);
 
   final TextEditingController dateController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
@@ -13,6 +22,10 @@ class EditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleService = Provider.of<ScheduleService>(context);
+
+    dateController.text = initialDate;
+    titleController.text = initialTitle;
+    contentController.text = initialContent;
 
     return Scaffold(
       appBar: AppBar(

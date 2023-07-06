@@ -69,7 +69,12 @@ class _MyWidgetState extends State<DailyScheduledView> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditPage()),
+                      MaterialPageRoute(
+                          builder: (context) => EditPage(
+                                initialContent: '',
+                                initialTitle: '',
+                                initialDate: '',
+                              )),
                     );
                   },
                 ),
