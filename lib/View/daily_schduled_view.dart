@@ -8,6 +8,7 @@ import 'package:team_sparta_17/Resource/AppFonts.dart';
 import 'package:team_sparta_17/Service/ScheduleService.dart';
 import 'package:team_sparta_17/View/round_plus_button.dart';
 import 'package:team_sparta_17/View/schedule_cell.dart';
+import 'package:team_sparta_17/View/schedule_detail_view.dart';
 import '../editPage.dart';
 
 class DailyScheduledView extends StatefulWidget {
@@ -54,8 +55,22 @@ class _MyWidgetState extends State<DailyScheduledView> {
                     child: ListView.builder(
                       itemCount: widget.selectedSchedules.length,
                       itemBuilder: (context, index) {
-                        return ScheduleCell(
-                            schedule: widget.selectedSchedules[index]);
+                        final Schedule schedule =
+                            widget.selectedSchedules[index];
+                        return GestureDetector(
+                          child: ScheduleCell(schedule: schedule),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: ScheduleDetailView(
+                                      schedule: schedule,
+                                    ),
+                                  );
+                                });
+                          },
+                        );
                       },
                     ),
                   ),
