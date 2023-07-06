@@ -4,7 +4,11 @@ import 'package:team_sparta_17/Model/Schedule.dart';
 import 'Service/ScheduleService.dart';
 
 class EditPage extends StatelessWidget {
-  const EditPage({Key? key}) : super(key: key);
+  EditPage({Key? key}) : super(key: key);
+
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +26,11 @@ class EditPage extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // 작성한 내용을 날짜화면에 저장하는 작업 및 제목과 내용을 가져와서 처리하는 코드 작성
-                  scheduleService.addSchedule(
-                      Schedule("2023년 07월 04일", "오늘할일", "내용을 입력합니다."));
+                  String date = dateController.text;
+                  String title = titleController.text;
+                  String content = contentController.text;
+
+                  scheduleService.addSchedule(Schedule(date, title, content));
                   Navigator.pop(context);
                 },
                 child: Text(
@@ -58,6 +65,7 @@ class EditPage extends StatelessWidget {
                 height: 18.0,
               ),
               TextField(
+                controller: dateController,
                 style: TextStyle(fontSize: 18.0),
                 decoration: InputDecoration(
                   hintText: 'xxxx년 xx월 xx일',
@@ -78,6 +86,7 @@ class EditPage extends StatelessWidget {
                 height: 18.0,
               ),
               TextField(
+                controller: titleController,
                 style: TextStyle(fontSize: 18.0),
                 decoration: InputDecoration(
                   hintText: '제목을 입력해주세요',
@@ -97,6 +106,7 @@ class EditPage extends StatelessWidget {
               Container(
                 height: 380.0,
                 child: TextField(
+                  controller: contentController,
                   style: TextStyle(fontSize: 18.0),
                   decoration: InputDecoration(
                     hintText: '내용을 입력해주세요',
