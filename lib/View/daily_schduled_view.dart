@@ -76,20 +76,20 @@ class _MyWidgetState extends State<DailyScheduledView> {
                   ),
                 ],
               ),
-              Positioned(
-                bottom: 20,
-                right: 20,
-                child: RoundCrossButton(
-                  size: 67,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EditPage()),
-                    );
-                  },
-                ),
-              ),
             ],
+          ),
+        ),
+        floatingActionButton: Builder(
+          builder: (context) => FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => EditPage()));
+            },
+            child: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+            backgroundColor: Color(0xffCFFFE5),
           ),
         ),
       ),
