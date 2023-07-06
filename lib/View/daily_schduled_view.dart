@@ -6,7 +6,6 @@ import 'package:team_sparta_17/Model/Schedule.dart';
 import 'package:team_sparta_17/Resource/AppColors.dart';
 import 'package:team_sparta_17/Resource/AppFonts.dart';
 import 'package:team_sparta_17/Service/ScheduleService.dart';
-import 'package:team_sparta_17/View/round_plus_button.dart';
 import 'package:team_sparta_17/View/schedule_cell.dart';
 import 'package:team_sparta_17/View/schedule_detail_view.dart';
 import '../editPage.dart';

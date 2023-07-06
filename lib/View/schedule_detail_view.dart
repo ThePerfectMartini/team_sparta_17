@@ -9,18 +9,25 @@ class ScheduleDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           schedule.date,
           style: AppFonts.title,
         ),
-        SizedBox(
-          height: 20,
+        Divider(
+          height: 30,
+          thickness: 1,
+          color: Colors.black,
         ),
         Text(
           schedule.title,
           style: AppFonts.title,
+        ),
+        Divider(
+          height: 30,
+          thickness: 1,
+          color: Colors.black,
         ),
         SizedBox(
           height: 20,

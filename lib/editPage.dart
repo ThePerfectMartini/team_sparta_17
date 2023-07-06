@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
 import 'package:team_sparta_17/Resource/AppFonts.dart';
-import 'Model/Schedule.dart';
 import 'Service/ScheduleService.dart';
 
 class EditPage extends StatelessWidget {
