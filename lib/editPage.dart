@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_sparta_17/Model/Schedule.dart';
+import 'package:team_sparta_17/Resource/AppFonts.dart';
 import 'Model/Schedule.dart';
 import 'Service/ScheduleService.dart';
 
@@ -12,6 +13,10 @@ class EditPage extends StatelessWidget {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+
+  bool isEditMode() {
+    return inputSchedule == null ? false : true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,7 @@ class EditPage extends StatelessWidget {
                   String title = titleController.text;
                   String content = contentController.text;
                   Schedule currentSchedule = Schedule(date, title, content);
-                  if (inputSchedule != null) {
+                  if (isEditMode()) {
                     scheduleService.updateSchedule(
                         inputSchedule!, currentSchedule);
                   } else {
@@ -46,11 +51,8 @@ class EditPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: Text(
-                  '작성',
-                  style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                  isEditMode() ? '편집' : '작성',
+                  style: isEditMode() ? AppFonts.alert : AppFonts.title,
                 ),
               ),
             ),
