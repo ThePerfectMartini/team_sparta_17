@@ -43,6 +43,29 @@ class Edit extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              '날짜',
+              style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 18.0,
+            ),
+            TextField(
+              style: TextStyle(fontSize: 18.0),
+              decoration: InputDecoration(
+                hintText: 'xxxx년 xx월 xx일',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(
+              height: 40.0,
+            ),
             Text(
               '제목',
               style: TextStyle(
