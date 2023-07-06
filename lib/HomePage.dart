@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:team_sparta_17/Model/Schedule.dart';
+import 'package:team_sparta_17/Service/ScheduleService.dart';
+import 'package:team_sparta_17/View/daily_schduled_view.dart';
+import 'package:team_sparta_17/edit.dart';
 import 'HomePage_cell.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,9 +27,10 @@ class _HomePageState extends State<HomePage> {
     },
   ];
   //더미데이터
-
   @override
   Widget build(BuildContext context) {
+    final scheduleService = Provider.of<ScheduleService>(context);
+    List<List<Schedule>> allSchedules = scheduleService.getAllSchedulesSortBy();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -37,16 +43,41 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color(0xffCFFFE5),
         ),
         body: ListView.builder(
-          itemCount: dummies.length,
+          itemCount: allSchedules.length,
           itemBuilder: (context, index) {
-            return Cell(date: dummies[index]['date'].toString(), count: index);
+            return Builder(builder: (context) {
+              return InkWell(
+                onTap: () {
+                  scheduleService.selectDate(allSchedules[index][0].date);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DailyScheduledView(
+                        selectedSchedules: allSchedules[index],
+                      ),
+                    ),
+                  );
+                },
+                child: Cell(
+                  schedules: allSchedules[index],
+                ),
+              );
+            });
           },
           //데이터 받아오는곳
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add, color: Colors.black),
-          backgroundColor: Color(0xffCFFFE5),
+        floatingActionButton: Builder(
+          builder: (context) => FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Edit()));
+            },
+            child: Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+            backgroundColor: Color(0xffCFFFE5),
+          ),
         ),
       ),
     );
